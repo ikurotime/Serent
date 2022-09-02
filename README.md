@@ -4,7 +4,7 @@
 
 <h2>🍰 Contribution Guidelines:</h2>
 
-\- Fork the repository and create a branch solving the bug or adding a feature (feature-XXXbug-XXXX) then make the Pull Request.
+\- Fork the repository and create a branch solving the bug or adding a feature (feature-XXX, bug-XXXX) then make the Pull Request.
 
   
   
