@@ -10,9 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@nextui-org/react": "^1.0.0-beta.10",
     "firebase": "^9.9.3",
     "preact": "10.10.6",
-    "react-router-dom": "6.3.0"
+    "react-router-dom": "6.3.0",
+    "use-dark-mode": "^2.3.1"
   },
   "devDependencies": {
     "@preact/preset-vite": "2.3.0",
