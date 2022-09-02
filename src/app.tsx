@@ -1,7 +1,7 @@
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, Navigate, Route, Routes } from "react-router-dom";
 
 // Pages =>
-import { Home } from "@/pages";
+import Landing from "./pages/index";
 
 // Service Worker =>
 import ServiceWorker from "@/pwa/serviceWorker";
@@ -11,6 +11,9 @@ import { AuthContextProvider } from "./context/AuthContext";
 
 import { Container, createTheme, NextUIProvider } from '@nextui-org/react';
 import NavbarComponent from "./components/navbar";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Home from "./pages/home";
+import PublicRoute from "./components/PublicRoute";
 
 const App = () => {
   
@@ -48,11 +51,15 @@ const App = () => {
       <NavbarComponent/>
       <div id="container">
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/auth">
+        <Route path="/" element={<Landing />} />
+        <Route element={<PublicRoute/>}>
         <Route path="/auth/login" element={<Login />} />
         <Route path="/auth/register" element={<Register />} />
         </Route>
+        <Route element={<ProtectedRoute/>} >
+          <Route path="/home" element={<Home />} />  
+        </Route>
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       </div>
       <ServiceWorker />

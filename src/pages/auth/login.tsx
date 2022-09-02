@@ -1,12 +1,11 @@
 
 import { useAuth } from "@/context/AuthContext";
-import { Button, Input, Navbar, Text } from "@nextui-org/react";
+import { Button, Input, Loading, Navbar, Text } from "@nextui-org/react";
 import { useState } from "preact/hooks"
 
 export default function Login() {
-
-  const { user, login } = useAuth()
-  console.log(user)
+  const [loading, setLoading] = useState(false);
+  const { login } = useAuth()
   const [formData, setFormData] = useState({
     email: "",
     password: ""
@@ -19,15 +18,17 @@ export default function Login() {
     });
   }
   const handleLogin = async (e: { preventDefault: () => void; }) => {
+    setLoading(true);
     e.preventDefault();
     try {
       await login(formData.email, formData.password)
     } catch (err: unknown) {
-     if(err instanceof Error){
-      throw Error(err?.message)
-     }
+      if(err instanceof Error){
+        throw Error(err?.message)
+      }
+    }finally{
+      setLoading(false);
     }
-    console.log(formData);
   }
   return (
     <>
@@ -36,7 +37,9 @@ export default function Login() {
     <form class="flex flex-col gap-3 m-3" onSubmit={handleLogin}>
     <Input name="email" onChange={onChange} type="text" />
     <Input name="password" onChange={onChange} type="password" />
-    <Button>Submit</Button>
+    <Button type="submit" auto bordered disabled={loading}>
+      {loading ? <Loading type="points" color="currentColor" size="sm" /> : "Submit"}
+    </Button>
     </form>
     </>
   )

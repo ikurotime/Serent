@@ -4,8 +4,7 @@ import { useState } from "preact/hooks"
 
 export default function Register() {
 
-  const { user,signup } = useAuth()
-  console.log(user)
+  const { signup } = useAuth()
   const [formData, setFormData] = useState({
     email: "",
     password: ""
@@ -26,7 +25,6 @@ export default function Register() {
       throw Error(err?.message)
      }
     }
-    console.log(formData);
   }
   return (
     <>

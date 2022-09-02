@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "preact/hooks"
 import { onAuthStateChanged,createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, UserCredential } from 'firebase/auth'
 import { auth } from "@/firebase/firebaseClient"
 import { AuthValue } from "@/types"
+import LoadingComponent from "@/components/loadingComponent"
 type Props = {
   children: ComponentChildren
 }
@@ -14,11 +15,10 @@ export const useAuth = () => useContext(AuthContext)
 export const AuthContextProvider = (props: Props) => {
 
   const [user, setUser] = useState<any>(null)
-  const [loading, setLoading] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user)=>{
-      console.log(user)
      if(user){
       setUser({
         uid: user?.uid,
@@ -42,13 +42,12 @@ export const AuthContextProvider = (props: Props) => {
     return signInWithEmailAndPassword(auth, email, password)
   }
   const logout = async () => {
-    console.log("logout")
     setUser(null)
     await signOut(auth)
   }
   return (
     <AuthContext.Provider value={{user, signup , login , logout}}>
-      {!loading && props.children}
+      {!loading ? props.children : (<LoadingComponent/>)}
     </AuthContext.Provider>
   )
 }
