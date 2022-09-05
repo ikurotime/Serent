@@ -1,11 +1,11 @@
-import { useCallback, useEffect } from "preact/hooks";
-import { useRegisterSW } from "virtual:pwa-register/react";
+import { useCallback, useEffect } from 'preact/hooks';
+import { useRegisterSW } from 'virtual:pwa-register/react';
 
 const ServiceWorker = () => {
   const {
     offlineReady: [offlineReady, setOfflineReady],
     needRefresh: [needRefresh, setNeedRefresh],
-    updateServiceWorker,
+    updateServiceWorker
   } = useRegisterSW();
 
   const close = useCallback(() => {
@@ -15,9 +15,9 @@ const ServiceWorker = () => {
 
   useEffect(() => {
     if (offlineReady) {
-      console.log("[📦 - Your app has been installed, it now works offline!");
+      console.log('[📦 - Your app has been installed, it now works offline!');
     } else if (needRefresh) {
-      console.log("[📦 - A new update is available!");
+      console.log('[📦 - A new update is available!');
       // Create here a toast or a modal with:
       // <button onClick={updateServiceWorker}>Update app</button>
       // <button onClick={close}>Close</button>

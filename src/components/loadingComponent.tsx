@@ -1,12 +1,11 @@
-import { Container } from "@nextui-org/react"
-import { Loading } from "@nextui-org/react"
+import { Loading } from '@nextui-org/react';
 
-type Props = {}
+type Props = {};
 
-export default function LoadingComponent({}: Props) {
+export default function LoadingComponent(props: Props) {
   return (
-    <div class="w-screen h-screen grid place-content-center">
-      <Loading size='xl' type='points'/>      
+    <div className="w-screen h-screen grid place-content-center">
+      <Loading size="xl" type="points" />
     </div>
-  )
+  );
 }

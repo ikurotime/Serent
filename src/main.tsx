@@ -1,17 +1,17 @@
-import { render } from "preact";
+import { render } from 'preact';
 
 // Styles =>
-import "@/styles/global.css";
+import '@/styles/global.css';
 
 // App =>
-import App from "./app";
+import App from './app';
 
 // React Router config =>
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from 'react-router-dom';
 
 render(
   <BrowserRouter>
     <App />
   </BrowserRouter>,
-  document.getElementById("app") as HTMLElement
+  document.getElementById('app') as HTMLElement
 );

@@ -1,17 +1,14 @@
-import { Link, Navigate, Route, Routes } from "react-router-dom";
-
 // Service Worker =>
-import ServiceWorker from "@/pwa/serviceWorker";
-import { AuthContextProvider } from "./context/AuthContext";
+import ServiceWorker from '@/pwa/serviceWorker';
+import { AuthContextProvider } from './context/AuthContext';
 
 import { createTheme, NextUIProvider } from '@nextui-org/react';
-import NavbarComponent from "./components/navbar";
-import { Router } from "./Router";
+import NavbarComponent from './components/navbar';
+import { Router } from './Router';
 
 const App = () => {
-  
   const darkTheme = createTheme({
-    type: "dark", // it could be "light" or "dark"
+    type: 'dark', // it could be "light" or "dark"
     theme: {
       colors: {
         // brand colors
@@ -28,26 +25,26 @@ const App = () => {
         background: '#1d1d1d',
         gradient: 'linear-gradient(112deg, $blue100 -25%, $pink500 -10%, $purple500 80%)',
         link: '#5E1DAD',
-  
+
         // you can also create your own color
         myColor: '#ff4ecd'
-  
+
         // ...  more colors
       },
       space: {},
       fonts: {}
     }
-  })
+  });
   return (
-      <NextUIProvider theme={darkTheme}>
-    <AuthContextProvider>
-      <NavbarComponent/>
-      <div id="container">
-        <Router/>
-      </div>
-      <ServiceWorker />
-    </AuthContextProvider>
-      </NextUIProvider>
+    <NextUIProvider theme={darkTheme}>
+      <AuthContextProvider>
+        <NavbarComponent />
+        <div id="container">
+          <Router />
+        </div>
+        <ServiceWorker />
+      </AuthContextProvider>
+    </NextUIProvider>
   );
 };
 
