@@ -1,8 +1,7 @@
-import { UserCredential } from 'firebase/auth';
 export type State = {
   localStream: MediaStream | null;
   remoteStream: MediaStream | null;
-  roomId: string | null;
+  room: { roomId: string; roomRef: any } | null;
 };
 type User = {
   uid: string;
@@ -11,8 +10,8 @@ type User = {
 };
 export type AuthValue = {
   user: User | null;
-  signup: ((email: string, password: string) => Promise<UserCredential>) | (() => Promise<void>);
-  login: ((email: string, password: string) => Promise<UserCredential>) | (() => Promise<void>);
+  signup: (email: string, password: string) => Promise<void>;
+  login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
   store: State | null;
   dispatch: any;

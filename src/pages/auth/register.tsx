@@ -6,7 +6,8 @@ export default function Register() {
   const { signup } = useAuth();
   const [formData, setFormData] = useState({
     email: '',
-    password: ''
+    password: '',
+    passwordConfirm: ''
   });
   // set a onChangeValue function to update the formData state
   const onChange = (e: any) => {
@@ -17,8 +18,20 @@ export default function Register() {
   };
   const handleSignUp = async (e: any) => {
     e.preventDefault();
+    if (formData.password.length < 6) {
+      return alert('Password must be at least 6 characters long');
+    }
+    if (formData.password !== formData.passwordConfirm) {
+      return alert('Passwords do not match');
+    }
     try {
       await signup(formData.email, formData.password);
+      /*   const userData = {
+        email: formData.email,
+        rooms: [],
+        friends: []
+      };
+      addDoc(collection(db, 'users'), userData); */
     } catch (err: unknown) {
       if (err instanceof Error) {
         throw Error(err?.message);
@@ -31,7 +44,10 @@ export default function Register() {
       <form className="flex flex-col gap-3 m-3" onSubmit={handleSignUp}>
         <Input name="email" onChange={onChange} type="text" />
         <Input name="password" onChange={onChange} type="password" />
-        <Button color="primary">Submit</Button>
+        <Input name="passwordConfirm" onChange={onChange} type="password" />
+        <Button color="primary" type="submit">
+          Submit
+        </Button>
       </form>
     </>
   );

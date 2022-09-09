@@ -3,7 +3,7 @@ import { State } from '@/types';
 export const initialStore = {
   localStream: null,
   remoteStream: null,
-  roomId: null
+  room: null
 };
 
 const storeReducer = (state: State, action: { type: string; payload: any }) => {
@@ -12,8 +12,8 @@ const storeReducer = (state: State, action: { type: string; payload: any }) => {
       return { ...state, localStream: action.payload };
     case 'SET_REMOTE_STREAM':
       return { ...state, remoteStream: action.payload };
-    case 'SET_ROOM_ID':
-      return { ...state, roomId: action.payload };
+    case 'SET_ROOM':
+      return { ...state, room: action.payload };
     default:
       return state;
   }
