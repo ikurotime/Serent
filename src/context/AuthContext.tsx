@@ -1,10 +1,10 @@
+import LoadingComponent from '@/components/loadingComponent';
+import { supabase } from '@/supabase/clientSupabase';
+import { AuthValue } from '@/types';
 import { ComponentChildren, createContext } from 'preact';
 import { useContext, useEffect, useReducer, useState } from 'preact/hooks';
-import { AuthValue } from '@/types';
-import LoadingComponent from '@/components/loadingComponent';
-import storeReducer, { initialStore } from './storeReducer';
 import { useNavigate } from 'react-router-dom';
-import { supabase } from '@/supabase/clientSupabase';
+import storeReducer, { initialStore } from './storeReducer';
 type Props = {
   children: ComponentChildren;
 };
@@ -29,7 +29,6 @@ export const AuthContextProvider = (props: Props) => {
   useEffect(() => {
     // Check active sessions and sets the user
     const session = supabase.auth.session();
-
     setUser(session?.user ?? null);
     setLoading(false);
 

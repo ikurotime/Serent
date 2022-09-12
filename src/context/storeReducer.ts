@@ -4,7 +4,7 @@ export const initialStore = {
   localStream: null,
   remoteStream: null,
   room: null,
-  pageName: ''
+  pageName: 'Home'
 };
 
 const storeReducer = (state: State, action: { type: string; payload: any }) => {

@@ -1,8 +1,10 @@
+import { useAuth } from '@/context/AuthContext';
 import { Container } from '@nextui-org/react';
 import { useEffect, useState } from 'preact/hooks';
 import ReactPlayer from 'react-player';
 export default function Room() {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const { store } = useAuth();
   // set a listener in an useEffect hook that enables the video when space key is pressed
   useEffect(() => {
     window.addEventListener('keydown', (e) => {
@@ -39,8 +41,8 @@ export default function Room() {
           />
         </div>
         <img
-          className="absolute top-0 left-0 w-full h-full object-cover object-center"
-          src="https://media1.giphy.com/media/9zExs2Q2h1EHfE4P6G/giphy.gif?cid=790b76119027c4bfd1cea77fb82f170edb51db0a35846401&rid=giphy.gif&ct=g"
+          className="absolute top-0 left-0 w-full h-full"
+          src={store?.room?.room_bg_image}
           width={500}
           height={500}
           alt=""

@@ -8,7 +8,7 @@ import { Router } from './Router';
 
 const App = () => {
   const darkTheme = createTheme({
-    type: 'dark', // it could be "light" or "dark"
+    type: 'light', // it could be "light" or "dark"
     theme: {
       colors: {
         // brand colors

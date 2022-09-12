@@ -1,11 +1,24 @@
+export type Room = {
+  id?: string;
+  title: any;
+  description?: string;
+  image?: string;
+};
+export type dbRoom = {
+  id: string;
+  created_at: string;
+  room_name: string;
+  user_id: string;
+  room_bg_image: string;
+};
 export type State = {
   localStream: MediaStream | null;
   remoteStream: MediaStream | null;
-  room: { roomId: string; roomRef: any } | null;
+  room: dbRoom | null;
   pageName: string;
 };
 type User = {
-  uid: string;
+  id: string;
   email: string;
   displayName: string;
 };

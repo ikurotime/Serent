@@ -5,6 +5,7 @@ import PublicRoute from './components/PublicRoute';
 import Login from './pages/auth/login';
 import Register from './pages/auth/register';
 import Home from './pages/home';
+import Create from './pages/home/create';
 import Explore from './pages/home/explore';
 import HomeIndex from './pages/home/index';
 import Landing from './pages/index';
@@ -24,6 +25,7 @@ export const Router = (props: Props) => {
           <Route path="/home" element={<HomeIndex />} />
           <Route path="/home/explore" element={<Explore />} />
         </Route>
+        <Route path="/home/create" element={<Create />} />
       </Route>
       <Route path="/room/:id" element={<Room />} />
       <Route path="*" element={<Navigate to="/" />} />
