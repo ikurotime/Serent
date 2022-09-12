@@ -2,6 +2,7 @@ export type State = {
   localStream: MediaStream | null;
   remoteStream: MediaStream | null;
   room: { roomId: string; roomRef: any } | null;
+  pageName: string;
 };
 type User = {
   uid: string;

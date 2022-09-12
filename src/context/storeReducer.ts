@@ -3,7 +3,8 @@ import { State } from '@/types';
 export const initialStore = {
   localStream: null,
   remoteStream: null,
-  room: null
+  room: null,
+  pageName: ''
 };
 
 const storeReducer = (state: State, action: { type: string; payload: any }) => {
@@ -14,6 +15,8 @@ const storeReducer = (state: State, action: { type: string; payload: any }) => {
       return { ...state, remoteStream: action.payload };
     case 'SET_ROOM':
       return { ...state, room: action.payload };
+    case 'SET_PAGE_NAME':
+      return { ...state, pageName: action.payload };
     default:
       return state;
   }

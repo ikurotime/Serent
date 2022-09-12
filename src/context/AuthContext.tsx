@@ -27,28 +27,21 @@ export const AuthContextProvider = (props: Props) => {
   const [store, dispatch] = useReducer(storeReducer, initialStore);
 
   useEffect(() => {
-    supabase.auth.onAuthStateChange((event, session) => {
-      console.log('event', event);
-      console.log('session', session);
-      if (session) {
-        setUser(session.user);
-      } else {
-        setUser(null);
-      }
-    });
+    // Check active sessions and sets the user
+    const session = supabase.auth.session();
+
+    setUser(session?.user ?? null);
     setLoading(false);
-    /*  const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUser({
-          uid: user?.uid,
-          email: user?.email,
-          displayName: user?.displayName
-        });
-      } else {
-        setUser(null);
-      }
+
+    // Listen for changes on auth state (logged in, signed out, etc.)
+    const { data: listener } = supabase.auth.onAuthStateChange(async (event, session) => {
+      setUser(session?.user ?? null);
       setLoading(false);
-    }); */
+    });
+
+    return () => {
+      listener?.unsubscribe();
+    };
   }, []);
 
   const signup = async (email: string, password: string) => {

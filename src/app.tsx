@@ -3,7 +3,7 @@ import ServiceWorker from '@/pwa/serviceWorker';
 import { AuthContextProvider } from './context/AuthContext';
 
 import { createTheme, NextUIProvider } from '@nextui-org/react';
-import NavbarComponent from './components/navbar';
+
 import { Router } from './Router';
 
 const App = () => {
@@ -38,7 +38,6 @@ const App = () => {
   return (
     <NextUIProvider theme={darkTheme}>
       <AuthContextProvider>
-        <NavbarComponent />
         <div id="container">
           <Router />
         </div>
