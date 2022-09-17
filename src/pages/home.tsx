@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <div className="flex flex-1 w-full">
       <aside className="bg-gray-900 flex flex-col p-5 h-full relative w-[80px] max-h-screen">
-        <div className="flex flex-col h-full gap-5 absolute top-10 left-5">
+        <div className="flex flex-col flex-1 gap-5 absolute top-10 left-5">
           <Button
             rounded
             auto
@@ -36,8 +36,8 @@ export default function Home() {
           <Button rounded auto ghost icon={<AiOutlineUser size={24} />} />
         </div>
       </aside>
-      <div className="bg-slate-700 flex-1">
-        <div className="flex justify-between flex-1 py-3 px-14 ">
+      <div className="bg-slate-700 flex-1 flex flex-col">
+        <div className="flex justify-between py-3 px-14 ">
           <h3 className="m-0 text-white">{store?.pageName}</h3>
           <Button
             auto
@@ -50,11 +50,7 @@ export default function Home() {
             Create a room
           </Button>
         </div>
-        <div className="flex justify-center h-full flex-1 overflow-y-scroll">
-          <div className="m-auto flex flex-col items-center ">
-            <Outlet />
-          </div>
-        </div>
+        <Outlet />
       </div>
     </div>
   );

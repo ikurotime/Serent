@@ -1,3 +1,4 @@
+import LoadingComponent from '@/components/loadingComponent';
 import { useAuth } from '@/context/AuthContext';
 import { supabase } from '@/supabase/clientSupabase';
 import { dbRoom } from '@/types';
@@ -10,14 +11,17 @@ type Props = {};
 
 export default function index(props: Props) {
   const navigate = useNavigate();
-  const { user, dispatch } = useAuth();
+  const { user, dispatch, setLoading } = useAuth();
+  const [isFetching, setIsFetching] = useState<boolean>(true);
   const [rooms, setRooms] = useState<any>([]);
   const enterRoom = async (room: dbRoom) => {
+    setLoading(true);
     navigate('/room/' + room.id);
     dispatch({
       type: 'SET_ROOM',
       payload: room
     });
+    setLoading(false);
   };
   useEffect(() => {
     const getRoomInfo = async () => {
@@ -25,11 +29,14 @@ export default function index(props: Props) {
       if (error) throw new Error(error.message);
       console.log(data);
       setRooms(data);
+      setIsFetching(false);
     };
     getRoomInfo();
   }, []);
+
+  if (isFetching) return <LoadingComponent />;
   return (
-    <div className="p-0 ">
+    <div className="p-0">
       {rooms.length === 0 ? (
         <>
           <AiOutlinePlusCircle size={80} />
@@ -44,10 +51,7 @@ export default function index(props: Props) {
           </Button>
         </>
       ) : (
-        <Grid.Container
-          css={{ overflowY: 'scroll', maxHeight: '95vh', padding: '50px' }}
-          gap={2}
-          justify="center">
+        <Grid.Container css={{ maxHeight: '95vh', padding: '50px' }} gap={2} justify="center">
           {rooms.map((room: dbRoom) => (
             <Grid key={room.id} xs={6} md={4} lg={3}>
               <Card

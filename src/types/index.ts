@@ -29,4 +29,5 @@ export type AuthValue = {
   logout: () => Promise<void>;
   store: State | null;
   dispatch: any;
+  setLoading: (loading: boolean) => void;
 };

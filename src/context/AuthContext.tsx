@@ -15,7 +15,8 @@ export const AuthContext = createContext<AuthValue>({
   login: async () => {},
   logout: async () => {},
   store: null,
-  dispatch: null
+  dispatch: null,
+  setLoading: () => {}
 });
 
 export const useAuth = () => useContext(AuthContext);
@@ -63,7 +64,7 @@ export const AuthContextProvider = (props: Props) => {
     await supabase.auth.signOut();
   };
   return (
-    <AuthContext.Provider value={{ user, signup, login, logout, store, dispatch }}>
+    <AuthContext.Provider value={{ user, signup, login, logout, store, dispatch, setLoading }}>
       {!loading ? props.children : <LoadingComponent />}
     </AuthContext.Provider>
   );

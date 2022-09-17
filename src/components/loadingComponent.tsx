@@ -4,7 +4,7 @@ type Props = {};
 
 export default function LoadingComponent(props: Props) {
   return (
-    <div className="w-screen h-screen grid place-content-center">
+    <div className="flex m-auto justify-center">
       <Loading size="xl" type="points" />
     </div>
   );
